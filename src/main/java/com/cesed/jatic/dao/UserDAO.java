@@ -9,4 +9,6 @@ public interface UserDAO {
 	void create(User user);
 
 	void update(User user);
+
+	User buscarUserPorCPF(String cpf);
 }

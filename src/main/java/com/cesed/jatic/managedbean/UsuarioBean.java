@@ -28,14 +28,6 @@ public class UsuarioBean {
 		this.userService = new UserService();
 	}
 
-	public List<PerfilEnum> getPerfis() {
-		List<PerfilEnum> perfis = new ArrayList<PerfilEnum>();
-		for (int i = 0; i < PerfilEnum.values().length; i++) {
-			perfis.add(PerfilEnum.values()[i]);
-		}
-		return perfis;
-	}
-
 	public void salvar() {
 		try {
 			this.userService.salvar(usuario);
@@ -47,6 +39,23 @@ public class UsuarioBean {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), ""));
 		}
+	}
+
+	public void validarCPF() {
+		User usuario = this.userService.pesquisarUsuarioPorCPF(this.usuario.getCpf());
+		if (usuario != null) {
+			this.usuario.setCpf("");
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Já existe usuário cadastrado com o mesmo CPF", ""));
+		}
+	}
+
+	public List<PerfilEnum> getPerfis() {
+		List<PerfilEnum> perfis = new ArrayList<PerfilEnum>();
+		for (int i = 0; i < PerfilEnum.values().length; i++) {
+			perfis.add(PerfilEnum.values()[i]);
+		}
+		return perfis;
 	}
 
 	public User getUsuario() {

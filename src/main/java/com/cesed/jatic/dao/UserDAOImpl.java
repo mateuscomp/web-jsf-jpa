@@ -22,6 +22,22 @@ public class UserDAOImpl extends GenericDAO implements UserDAO {
 		}
 	}
 
+	public User buscarUserPorCPF(String cpf) {
+		try {
+			EntityManager em = factory.createEntityManager();
+			em.getTransaction().begin();
+
+			User user = (User) factory.createEntityManager().createQuery("SELECT u FROM User u WHERE u.cpf =:cpf")
+					.setParameter("cpf", cpf).getSingleResult();
+			em.getTransaction().commit();
+			em.close();
+
+			return user;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 	public void create(User user) {
 		EntityManager em = factory.createEntityManager();
 		em.getTransaction().begin();

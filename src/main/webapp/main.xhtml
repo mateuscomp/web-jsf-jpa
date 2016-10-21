@@ -48,7 +48,9 @@
 								<p:inputMask id="cpfInputMask" mask="999.999.999-99"
 									placeholder="Informe aqui o CPF"
 									value="#{usuarioBean.usuario.cpf}" required="true"
-									requiredMessage="CPF é obrigatório" />
+									requiredMessage="CPF é obrigatório">
+									<p:ajax update="growl, @this" event="change" listener="#{usuarioBean.validarCPF}"/>	
+								</p:inputMask>
 							</h:panelGrid>
 
 							<h:panelGrid>

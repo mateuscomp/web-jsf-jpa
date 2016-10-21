@@ -41,4 +41,9 @@ public class UserService {
 			}
 		}
 	}
+
+	public User pesquisarUsuarioPorCPF(String cpf) {
+		cpf = cpf.replace(".", "").replace("-", "").replace(" ", "");
+		return this.userDAO.buscarUserPorCPF(cpf);
+	}
 }
