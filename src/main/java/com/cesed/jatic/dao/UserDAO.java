@@ -5,4 +5,8 @@ import com.cesed.jatic.entity.User;
 public interface UserDAO {
 
 	User buscarUserPorId(Long id);
+
+	void create(User user);
+
+	void update(User user);
 }

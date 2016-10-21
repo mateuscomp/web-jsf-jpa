@@ -7,21 +7,154 @@
 
 <ui:composition template="template/layout.xhtml">
 	<ui:define name="content">
-		<p:panel id="mainPanel">
-			<h:form>
-				<p:growl id="growl" />
+		<p:layout fullPage="true">
+			<p:layoutUnit position="north" size="100" header="Jatic - 2016"
+				resizable="true">
 
-				<p:outputLabel value="#{helloWorldBean.hello}" />
-			</h:form>
-		</p:panel>
+				<div align="center">
+					<h1>Minicurso Web com JSF e JPA</h1>
+				</div>
+			</p:layoutUnit>
 
-		<p:separator style="margin:10px;" />
+			<p:layoutUnit position="west" size="200" header="Left"
+				resizable="true" closable="true" collapsible="true">
+				<h:outputText value="West unit content." />
+			</p:layoutUnit>
 
-		<p:dialog modal="true" resizable="false" header="Aguarde"
-			widgetVar="statusDialog" draggable="false" closable="false">
-			<h:graphicImage
-				url="https://s3-us-west-2.amazonaws.com/educservicebucket/images/carregando.gif" />
-		</p:dialog>
+			<p:layoutUnit position="center" header="Usuário">
+				<h:form>
+					<h2>Listar Usuários</h2>
+					<p:separator />
+				</h:form>
+
+				<h:form>
+					<p:growl id="growl" autoUpdate="true" />
+
+					<h2>Cadastrar Usuário</h2>
+					<p:separator />
+
+					<h:panelGrid cellpadding="5">
+						<h:panelGrid columns="4">
+							<h:panelGrid>
+								<p:outputLabel for="nomeCadastroInputText" value="Nome" />
+								<p:inputText id="nomeCadastroInputText" size="45"
+									value="#{usuarioBean.usuario.name}" required="true"
+									requiredMessage="Nome é obrigatório"
+									placeholder="Insira aqui o seu nome" />
+							</h:panelGrid>
+
+							<h:panelGrid>
+								<p:outputLabel for="cpfInputMask" value="CPF" />
+								<p:inputMask id="cpfInputMask" mask="999.999.999-99"
+									placeholder="Informe aqui o CPF"
+									value="#{usuarioBean.usuario.cpf}" required="true"
+									requiredMessage="CPF é obrigatório" />
+							</h:panelGrid>
+
+							<h:panelGrid>
+								<p:outputLabel for="perfilOneMenu" value="Perfil " />
+								<p:selectOneMenu id="perfilOneMenu"
+									value="#{usuarioBean.usuario.perfil}" required="true"
+									requiredMessage="Perfil é obrigatório">
+									<f:selectItem itemLabel="Selecione..." itemValue="" />
+									<f:selectItems value="#{usuarioBean.perfis}" />
+								</p:selectOneMenu>
+							</h:panelGrid>
+
+							<h:panelGrid>
+								<p:outputLabel for="sexoOneRadio" value="Sexo:" />
+								<p:selectOneRadio id="sexoOneRadio"
+									value="#{usuarioBean.usuario.sexo}" required="true"
+									requiredMessage="Sexo é obrigatório">
+									<f:selectItem itemLabel="Masculino" itemValue="m" />
+									<f:selectItem itemLabel="Feminino" itemValue="f" />
+								</p:selectOneRadio>
+							</h:panelGrid>
+						</h:panelGrid>
+
+						<h:panelGrid columns="2">
+							<h:panelGrid>
+								<p:outputLabel for="dataDeNascimentoCalendar"
+									value="Data de Nascimento" />
+								<p:calendar id="dataDeNascimentoCalendar" mode="inline"
+									value="#{usuarioBean.usuario.dataDeNascimento}" required="true"
+									requiredMessage="Data de Nascimento é obrigatório" />
+							</h:panelGrid>
+
+							<h:panelGrid width="420">
+								<p:outputPanel style="height: 220px;">
+									<h:panelGrid cellspacing="0" columns="4">
+										<h:panelGrid cellspacing="0">
+											<p:outputLabel for="codAreaInputText" value="Código de Área" />
+											<p:inputMask id="codAreaInputText" mask="(99)"
+												value="#{usuarioBean.codigoDeArea}" />
+										</h:panelGrid>
+
+										<h:panelGrid>
+											<p:outputLabel for="numeroInputText" value="Número" />
+											<p:inputMask id="numeroInputText" mask="99999 - 9999"
+												value="#{usuarioBean.numero}" />
+										</h:panelGrid>
+
+										<h:panelGrid>
+											<p:outputLabel for="operadoraInputText" value="Operadora" />
+											<p:inputText id="operadoraInputText"
+												value="#{usuarioBean.operadora}" />
+										</h:panelGrid>
+
+										<h:panelGrid cellspacing="0">
+											<p:spacer />
+											<p:commandButton value="Add." />
+										</h:panelGrid>
+									</h:panelGrid>
+
+									<p:dataTable var="telefone"
+										value="#{usuarioBean.usuario.telefones}"
+										emptyMessage="Nenhum telefone cadastrado..." rows="5">
+
+										<p:column headerText="Operadora">
+											<h:outputText value="#{telefone.operadora}" />
+										</p:column>
+
+										<p:column headerText="Número completo">
+											<h:outputText value="#{telefone.numeroCompleto}" />
+										</p:column>
+
+										<p:column headerText="Excluir">
+
+										</p:column>
+									</p:dataTable>
+								</p:outputPanel>
+							</h:panelGrid>
+
+						</h:panelGrid>
+
+						<h:panelGrid columns="2">
+							<h:panelGrid>
+								<p:outputLabel for="senhaPassword1" value="Senha" />
+								<p:password id="senhaPassword1"
+									value="#{usuarioBean.usuario.senha}" feedback="true"
+									inline="false" promptLabel="Baixo" weakLabel="Fraco"
+									goodLabel="Bom" strongLabel="Forte" required="true"
+									placeholder="Insira aqui a sua senha"
+									requiredMessage="Senha é obrigatório" match="senhaPassword2" />
+							</h:panelGrid>
+
+							<h:panelGrid>
+								<p:outputLabel for="senhaPassword2" value="Confirme a Senha" />
+								<p:password id="senhaPassword2"
+									value="#{usuarioBean.usuario.senha}" required="true"
+									placeholder="Repita aqui a sua senha"
+									requiredMessage="Confirmação de Senha é obrigatório" />
+							</h:panelGrid>
+						</h:panelGrid>
+
+						<p:commandButton value="Salvar"
+							actionListener="#{usuarioBean.salvar}" update="@form" />
+					</h:panelGrid>
+				</h:form>
+			</p:layoutUnit>
+		</p:layout>
 	</ui:define>
 </ui:composition>
 </html>
