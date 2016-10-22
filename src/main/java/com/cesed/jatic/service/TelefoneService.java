@@ -19,4 +19,8 @@ public class TelefoneService {
 		this.telefoneDAO.create(telefone);
 	}
 
+	public void remover(Telefone telefone) {
+		this.telefoneDAO.delete(telefone);
+	}
+
 }

@@ -1,5 +1,7 @@
 package com.cesed.jatic.service;
 
+import java.util.List;
+
 import com.cesed.jatic.dao.UserDAO;
 import com.cesed.jatic.dao.UserDAOImpl;
 import com.cesed.jatic.entity.User;
@@ -45,5 +47,9 @@ public class UserService {
 	public User pesquisarUsuarioPorCPF(String cpf) {
 		cpf = cpf.replace(".", "").replace("-", "").replace(" ", "");
 		return this.userDAO.buscarUserPorCPF(cpf);
+	}
+
+	public List<User> pesquisarUsuariosPorNomeECPF(String name, String cpf) {
+		return this.userDAO.buscarUsuariosPorNomeECPF(name, cpf);
 	}
 }

@@ -6,4 +6,6 @@ public interface TelefoneDAO {
 
 	void create(Telefone telefone);
 
+	void delete(Telefone telefone);
+
 }

@@ -14,4 +14,13 @@ public class TelefoneDAOImpl extends GenericDAO implements TelefoneDAO {
 		em.close();
 	}
 
+	public void delete(Telefone telefone) {
+		EntityManager em = factory.createEntityManager();
+		em.getTransaction().begin();
+		Telefone telRem = em.find(Telefone.class, telefone.getId());
+		em.remove(telRem);
+		em.getTransaction().commit();
+		em.close();
+	}
+
 }
