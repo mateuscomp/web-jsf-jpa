@@ -23,66 +23,6 @@
 
 			<p:layoutUnit position="center" header="Usuário">
 				<h:form id="formPesquisa">
-					<p:growl id="growlPesquisa" autoUpdate="true" />
-
-					<h2>Listar Usuários</h2>
-					<p:separator />
-
-					<h:panelGrid cellpadding="5" columns="3">
-						<h:panelGrid>
-							<p:outputLabel for="nomePesquisaInputText" value="Nome" />
-							<p:inputText id="nomePesquisaInputText" size="45"
-								value="#{usuarioBean.namePesquisaParameter}"
-								placeholder="Nome do usuário" />
-						</h:panelGrid>
-
-						<h:panelGrid>
-							<p:outputLabel for="cpfPesquisaInputText" value="CPF" />
-							<p:inputText id="cpfPesquisaInputText"
-								value="#{usuarioBean.cpfPesquisaParameter}"
-								placeholder="CPF do usuário" />
-						</h:panelGrid>
-
-						<h:panelGrid cellspacing="0">
-							<p:spacer />
-							<p:commandButton value="Pesquisar"
-								actionListener="#{usuarioBean.pesquisar}" update="@form" />
-						</h:panelGrid>
-					</h:panelGrid>
-					<h:panelGrid cellpadding="5">
-						<p:dataTable id="usuariosPesquisaDataTable" var="usr"
-							value="#{usuarioBean.usuariosPesquisa}"
-							emptyMessage="Nenhum usuário...">
-
-							<p:column headerText="ID">
-								<h:outputText value="#{usr.id}" />
-							</p:column>
-
-							<p:column headerText="Nome">
-								<h:outputText value="#{usr.name}" />
-							</p:column>
-
-							<p:column headerText="CPF">
-								<h:outputText value="#{usr.cpf}" />
-							</p:column>
-
-							<p:column headerText="Perfil">
-								<h:outputText value="#{usr.perfil}" />
-							</p:column>
-
-							<p:column headerText="Editar">
-								<div align="center">
-									<p:commandLink actionListener="#{usuarioBean.editar(usr)}"
-										update="@parent, @this, :formCadastro">
-
-										<p:graphicImage
-											url="https://s3-us-west-2.amazonaws.com/educservicebucket/images/edit.png"
-											width="20" height="20" />
-									</p:commandLink>
-								</div>
-							</p:column>
-						</p:dataTable>
-					</h:panelGrid>
 				</h:form>
 
 				<h:form id="formCadastro">
@@ -94,22 +34,11 @@
 					<h:panelGrid cellpadding="5">
 						<h:panelGrid columns="4">
 							<h:panelGrid>
-								<p:outputLabel for="nomeCadastroInputText" value="Nome" />
-								<p:inputText id="nomeCadastroInputText" size="45"
-									value="#{usuarioBean.usuario.name}" required="true"
-									requiredMessage="Nome é obrigatório"
-									placeholder="Insira aqui o seu nome" />
+								<!-- Os componentes referentes ao nome do usuário deve ser inseridos aqui -->
 							</h:panelGrid>
 
 							<h:panelGrid>
-								<p:outputLabel for="cpfInputMask" value="CPF" />
-								<p:inputMask id="cpfInputMask" mask="999.999.999-99"
-									placeholder="Informe aqui o CPF"
-									value="#{usuarioBean.usuario.cpf}" required="true"
-									requiredMessage="CPF é obrigatório">
-									<p:ajax update="growl, @this" event="change"
-										listener="#{usuarioBean.validarCPF}" />
-								</p:inputMask>
+								<!-- Os componentes referentes ao nome do usuário deve ser inseridos aqui -->
 							</h:panelGrid>
 
 							<h:panelGrid>
@@ -165,10 +94,7 @@
 
 										<h:panelGrid cellspacing="0">
 											<p:spacer />
-											<p:commandButton value="Add."
-												action="#{usuarioBean.adicionarTelefone}"
-												update="growl, codAreaInputText, numeroInputText, operadoraInputText, telefonesDataTable"
-												process="codAreaInputText, numeroInputText, operadoraInputText, @this" />
+											<p:commandButton value="Add."/>
 										</h:panelGrid>
 									</h:panelGrid>
 
@@ -186,18 +112,9 @@
 
 										<p:column headerText="Excluir">
 											<div align="center">
-												<p:commandLink
-													actionListener="#{usuarioBean.excluirTelefone(telefone)}"
-													update="@this, telefonesDataTable" process="@this">
-
-													<p:graphicImage
-														url="https://s3-us-west-2.amazonaws.com/educservicebucket/images/remove.png"
-														width="20" height="20" />
-
-													<p:confirm header="Confirmação"
-														message="Tem certeza que deseja remover o telefone?"
-														icon="ui-icon-alert" />
-												</p:commandLink>
+												<p:graphicImage
+													url="https://s3-us-west-2.amazonaws.com/educservicebucket/images/remove.png"
+													width="20" height="20" />
 											</div>
 										</p:column>
 									</p:dataTable>
@@ -230,13 +147,6 @@
 							actionListener="#{usuarioBean.salvar}"
 							update="@form, :formPesquisa" />
 					</h:panelGrid>
-
-					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-						<p:commandButton value="Sim" type="button"
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-						<p:commandButton value="Não" type="button"
-							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-					</p:confirmDialog>
 				</h:form>
 			</p:layoutUnit>
 		</p:layout>
