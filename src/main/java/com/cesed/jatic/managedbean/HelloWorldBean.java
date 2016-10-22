@@ -2,24 +2,21 @@ package com.cesed.jatic.managedbean;
 
 import javax.faces.bean.ManagedBean;
 
-import com.cesed.jatic.entity.User;
-import com.cesed.jatic.service.UserService;
-
 @ManagedBean
 public class HelloWorldBean {
 
-	private UserService userService;
+	private String sayHello;
 
 	public HelloWorldBean() {
-		this.userService = new UserService();
+		this.sayHello = "Hello World!!!";
 	}
 
-	public String getHello() {
-		String hello = "Hello World";
-		User user = this.userService.pesquisarUserPorId(1L);
-		if (user != null) {
-			hello += " " + user.getName();
-		}
-		return hello;
+	public String getSayHello() {
+		return sayHello;
 	}
+
+	public void setSayHello(String sayHello) {
+		this.sayHello = sayHello;
+	}
+
 }
