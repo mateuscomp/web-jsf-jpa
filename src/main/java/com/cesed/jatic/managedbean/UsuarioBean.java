@@ -23,9 +23,9 @@ public class UsuarioBean {
 	private String numero;
 	private String operadora;
 
-	private String namePesquisaParameter;
-	private String cpfPesquisaParameter;
-	private List<User> usuariosPesquisa;
+//	private String namePesquisaParameter;
+//	private String cpfPesquisaParameter;
+//	private List<User> usuariosPesquisa;
 
 	private UserService userService;
 	private TelefoneService telefoneService;
@@ -51,12 +51,11 @@ public class UsuarioBean {
 	}
 
 	public void pesquisar() {
-		this.usuariosPesquisa = this.userService.pesquisarUsuariosPorNomeECPF(this.namePesquisaParameter,
-				this.cpfPesquisaParameter);
+		//TODO;
 	}
 
 	public void editar(User usuario) {
-		this.usuario = usuario;
+		//TODO;
 	}
 
 	public void adicionarTelefone() {
@@ -135,29 +134,4 @@ public class UsuarioBean {
 	public void setOperadora(String operadora) {
 		this.operadora = operadora;
 	}
-
-	public String getNamePesquisaParameter() {
-		return namePesquisaParameter;
-	}
-
-	public void setNamePesquisaParameter(String namePesquisaParameter) {
-		this.namePesquisaParameter = namePesquisaParameter;
-	}
-
-	public String getCpfPesquisaParameter() {
-		return cpfPesquisaParameter;
-	}
-
-	public void setCpfPesquisaParameter(String cpfPesquisaParameter) {
-		this.cpfPesquisaParameter = cpfPesquisaParameter;
-	}
-
-	public List<User> getUsuariosPesquisa() {
-		return usuariosPesquisa;
-	}
-
-	public void setUsuariosPesquisa(List<User> usuariosPesquisa) {
-		this.usuariosPesquisa = usuariosPesquisa;
-	}
-
 }
