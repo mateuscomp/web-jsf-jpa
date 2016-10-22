@@ -16,9 +16,9 @@
 				</div>
 			</p:layoutUnit>
 
-			<p:layoutUnit position="west" size="200" header="Left"
+			<p:layoutUnit position="west" size="200" header="Menu"
 				resizable="true" closable="true" collapsible="true">
-				<h:outputText value="West unit content." />
+
 			</p:layoutUnit>
 
 			<p:layoutUnit position="center" header="Usuário">
@@ -49,7 +49,8 @@
 									placeholder="Informe aqui o CPF"
 									value="#{usuarioBean.usuario.cpf}" required="true"
 									requiredMessage="CPF é obrigatório">
-									<p:ajax update="growl, @this" event="change" listener="#{usuarioBean.validarCPF}"/>	
+									<p:ajax update="growl, @this" event="change"
+										listener="#{usuarioBean.validarCPF}" />
 								</p:inputMask>
 							</h:panelGrid>
 
@@ -106,11 +107,14 @@
 
 										<h:panelGrid cellspacing="0">
 											<p:spacer />
-											<p:commandButton value="Add." />
+											<p:commandButton value="Add."
+												action="#{usuarioBean.adicionarTelefone}"
+												update="growl, codAreaInputText, numeroInputText, operadoraInputText, telefonesDataTable"
+												process="codAreaInputText, numeroInputText, operadoraInputText, @this" />
 										</h:panelGrid>
 									</h:panelGrid>
 
-									<p:dataTable var="telefone"
+									<p:dataTable id="telefonesDataTable" var="telefone"
 										value="#{usuarioBean.usuario.telefones}"
 										emptyMessage="Nenhum telefone cadastrado..." rows="5">
 
